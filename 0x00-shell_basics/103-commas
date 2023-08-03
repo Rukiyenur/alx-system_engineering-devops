@@ -1,2 +1,2 @@
 #!/bin/bash
-la -map
+ls -A | sed 's,^.*$,./&,' | sort -k1,1 -t/ -n | awk -F/ 'BEGIN {OFS = ""} {if ($2 != "") $2 = $2"/"} 1' | paste -sd ',' - | sed 's/^/.\//; s/, ./, ..\//'
